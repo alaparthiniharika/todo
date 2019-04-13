@@ -1,0 +1,31 @@
+
+<body style="border: 2px ridge white;border-radius:20px;padding:20px;font-family:verdana;background:black;color:white;background-image:linear-gradient(to top,lightgreen,lightblue)">
+
+<center>
+<h1>TO-DO LIST</h1></center>
+<ol>
+
+    <div style="background-image:linear-gradient(to left,rosybrown,lightyellow);border: 1px ridge white;padding:20px;width:550px;margin-left:300px;color:black">
+    <form  action="addTodo" method="post">
+        {% csrf_token %}
+        <center>
+        To-do:  <input  type="text" name="content">
+        Deadline: <input  type="date" name="cdate">
+
+
+
+        <input type="submit" value="ADD"></center>
+    </form>
+        </div>
+
+    {% for todo_item in all_items %}<br>
+    <li>{{ todo_item.content }}<span style="color:navy"> {{ todo_item.cdate }}</span>
+    <form  action="deletetodo/{{ todo_item.id }}"
+           method="post">{% csrf_token %}</form>
+   <div > <input style="border:1px solid white;border-radius:7px;padding:5px;background-color:darkslategrey;color:white" type="submit" value="Delete" >
+    </form>
+    </li>
+    {% endfor %}
+
+</ol>
+</body>
